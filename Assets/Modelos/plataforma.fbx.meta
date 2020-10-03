@@ -7,6 +7,9 @@ ModelImporter:
     400000: //RootNode
     2100000: Material
     2100002: Material.001
+    2100004: baseMat
+    2100006: platMat
+    2100008: topoMat
     2300000: //RootNode
     3300000: //RootNode
     4300000: plataforma

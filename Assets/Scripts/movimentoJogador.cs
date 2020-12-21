@@ -7,13 +7,16 @@ public class movimentoJogador : MonoBehaviour
     // referencias
     private plataformaSpawner platSpawner;
 
-    private Transform tabuleiro;
+    public Transform tabuleiro;
+    public Transform cam;
+
+    public int arTab;
+    public float atraso;
 
     // Start is called before the first frame update
     void Start()
     {
         platSpawner = transform.parent.GetComponent<plataformaSpawner>();
-        tabuleiro = transform.parent.GetChild(0);
     }
 
     // Update is called once per frame
@@ -21,15 +24,23 @@ public class movimentoJogador : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            Vector3 position = this.transform.position;
-            position.z++;
-            this.transform.position = position;
+            // move o jogador
+            Vector3 posicaoJogador = this.transform.position;
+            posicaoJogador.z++;
+            this.transform.position = posicaoJogador;
+            // move a camera
+            Vector3 posicaoCamera = new Vector3(
+                posicaoJogador.x-7.5f,
+                posicaoJogador.y+4.5f,
+                posicaoJogador.z
+            );
+            cam.transform.position = Vector3.Lerp(cam.transform.position, posicaoCamera, atraso);
 
-            int x = (int)position.x;
+            int x = (int)posicaoJogador.x;
 
             // spawnar pra frentemente as plataformas
-            for (int j=x-4; j<=x+4; j++) {
-                int[] temPos = { j, (int)position.z+4 };
+            for (int j=x-arTab; j<=x+arTab; j++) {
+                int[] temPos = { j, (int)posicaoJogador.z+arTab };
                 platSpawner.SpawnPlataforma(
                     temPos,
                     tabuleiro
@@ -37,22 +48,29 @@ public class movimentoJogador : MonoBehaviour
             }
 
             // deleta pra trazmente as plataformas
-            for (int j=x-4; j<=x+4; j++) {
-                int[] oldPos = { j, (int)position.z-5 };
+            for (int j=x-arTab; j<=x+arTab; j++) {
+                int[] oldPos = { j, (int)posicaoJogador.z-(arTab+1) };
                 platSpawner.DeletePlataforma( oldPos );
             }
         }
         if (Input.GetKeyDown(KeyCode.RightArrow))
         {
-            Vector3 position = this.transform.position;
-            position.z--;
-            this.transform.position = position;
+            Vector3 posicaoJogador = this.transform.position;
+            posicaoJogador.z--;
+            this.transform.position = posicaoJogador;
 
-            int x = (int)position.x;
+            Vector3 posicaoCamera = new Vector3(
+                posicaoJogador.x-7.5f,
+                posicaoJogador.y+4.5f,
+                posicaoJogador.z
+            );
+            cam.transform.position = Vector3.Lerp (cam.transform.position, posicaoCamera, atraso);
+
+            int x = (int)posicaoJogador.x;
 
             // spawnar pra frentemente as plataformas
-            for (int j=x-4; j<=x+4; j++) {
-                int[] temPos = { j, (int)position.z-4 };
+            for (int j=x-arTab; j<=x+arTab; j++) {
+                int[] temPos = { j, (int)posicaoJogador.z-arTab };
                 platSpawner.SpawnPlataforma(
                     temPos,
                     tabuleiro
@@ -60,22 +78,29 @@ public class movimentoJogador : MonoBehaviour
             }
 
             // deleta pra trazmente as plataformas
-            for (int j=x-4; j<=x+4; j++) {
-                int[] oldPos = { j, (int)position.z+5 };
+            for (int j=x-arTab; j<=x+arTab; j++) {
+                int[] oldPos = { j, (int)posicaoJogador.z+(arTab+1) };
                 platSpawner.DeletePlataforma( oldPos );
             }
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
-            Vector3 position = this.transform.position;
-            position.x++;
-            this.transform.position = position;
+            Vector3 posicaoJogador = this.transform.position;
+            posicaoJogador.x++;
+            this.transform.position = posicaoJogador;
 
-            int z = (int)position.z;
+            Vector3 posicaoCamera = new Vector3(
+                posicaoJogador.x-7.5f,
+                posicaoJogador.y+4.5f,
+                posicaoJogador.z
+            );
+            cam.transform.position = Vector3.Lerp (cam.transform.position, posicaoCamera, atraso);
+
+            int z = (int)posicaoJogador.z;
 
             // spawnar pra frentemente as plataformas
-            for (int j=z-4; j<=z+4; j++) {
-                int[] temPos = { (int)position.x+4, j };
+            for (int j=z-arTab; j<=z+arTab; j++) {
+                int[] temPos = { (int)posicaoJogador.x+arTab, j };
                 platSpawner.SpawnPlataforma(
                     temPos,
                     tabuleiro
@@ -83,22 +108,29 @@ public class movimentoJogador : MonoBehaviour
             }
 
             // deleta pra trazmente as plataformas
-            for (int j=z-4; j<=z+4; j++) {
-                int[] oldPos = { (int)position.x-5, j };
+            for (int j=z-arTab; j<=z+arTab; j++) {
+                int[] oldPos = { (int)posicaoJogador.x-(arTab+1), j };
                 platSpawner.DeletePlataforma( oldPos );
             }
         }
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-            Vector3 position = this.transform.position;
-            position.x--;
-            this.transform.position = position;
+            Vector3 posicaoJogador = this.transform.position;
+            posicaoJogador.x--;
+            this.transform.position = posicaoJogador;
 
-            int z = (int)position.z;
+            Vector3 posicaoCamera = new Vector3(
+                posicaoJogador.x-7.5f,
+                posicaoJogador.y+4.5f,
+                posicaoJogador.z
+            );
+            cam.transform.position = Vector3.Lerp (cam.transform.position, posicaoCamera, atraso);
+
+            int z = (int)posicaoJogador.z;
 
             // spawnar pra frentemente as plataformas
-            for (int j=z-4; j<=z+4; j++) {
-                int[] temPos = { (int)position.x-4, j };
+            for (int j=z-arTab; j<=z+arTab; j++) {
+                int[] temPos = { (int)posicaoJogador.x-arTab, j };
                 platSpawner.SpawnPlataforma(
                     temPos,
                     tabuleiro
@@ -106,8 +138,8 @@ public class movimentoJogador : MonoBehaviour
             }
 
             // deleta pra trazmente as plataformas
-            for (int j=z-4; j<=z+4; j++) {
-                int[] oldPos = { (int)position.x+5, j };
+            for (int j=z-arTab; j<=z+arTab; j++) {
+                int[] oldPos = { (int)posicaoJogador.x+(arTab+1), j };
                 platSpawner.DeletePlataforma( oldPos );
             }
         }

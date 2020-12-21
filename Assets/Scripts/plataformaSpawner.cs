@@ -9,6 +9,7 @@ public class plataformaSpawner : MonoBehaviour
     public GameObject platPrefab;
 
     private Transform tabuleiro;
+    private movimentoJogador movJog;
 
     private List<int[]> matrizTabuleiro = new List<int[]>();
 
@@ -29,22 +30,23 @@ public class plataformaSpawner : MonoBehaviour
         foreach (Transform p in tabuleiro.transform) {
             if (pos[0] == (int)p.position.x && pos[1] == (int)p.position.z) {
                 GameObject.Destroy(p.gameObject);
-                matrizTabuleiro.RemoveAll(item => pos.SequenceEqual(item));
             }
         }
+        matrizTabuleiro.RemoveAll(item => pos.SequenceEqual(item));
     }
 
     // Start is called before the first frame update
     void Start()
     {
         tabuleiro = transform.GetChild(0);
+        movJog = transform.GetChild(1).GetComponent<movimentoJogador>();
 
         Vector3 jPos = transform.GetChild(1).position;
         int posX = (int)jPos.x,
             posZ = (int)jPos.z;
 
-        for (int i=posX-4; i<=posX+4; i++) {
-            for (int j=posZ-4; j<=posZ+4; j++) {
+        for (int i=posX-movJog.arTab; i<=posX+movJog.arTab; i++) {
+            for (int j=posZ-movJog.arTab; j<=posZ+movJog.arTab; j++) {
                 int[] temPos = { i, j };
                 SpawnPlataforma( temPos, tabuleiro);
             }

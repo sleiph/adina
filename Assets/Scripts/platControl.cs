@@ -5,7 +5,7 @@ using UnityEngine;
 public class platControl : MonoBehaviour
 {
     // variaveis
-    public bool isSelectado = false;
+    public bool isSelectado;
     bool m_isSelectado = false;
 
     public Material[] selecMat;
@@ -21,10 +21,12 @@ public class platControl : MonoBehaviour
     void Update()
     {
         if (isSelectado != m_isSelectado) {
-            if (isSelectado)
+            if (isSelectado) {
                 GetComponent<MeshRenderer>().materials = selecMat;
-            else
+            }
+            else {
                 GetComponent<MeshRenderer>().materials = deselecMat;
+            }
             m_isSelectado = isSelectado;
         }
     }

@@ -27,14 +27,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isSelectado: 0
-  selecMat:
-  - {fileID: 2100000, guid: 2f36d0124472e6a4ea92781d2154fd6c, type: 2}
-  - {fileID: 2100000, guid: 83c6a9f9099e29641bf7621147105b31, type: 2}
-  - {fileID: 2100000, guid: ea628c49eb0d30745b20be880114a8d0, type: 2}
-  deselecMat:
-  - {fileID: 2100000, guid: 2f36d0124472e6a4ea92781d2154fd6c, type: 2}
-  - {fileID: 2100000, guid: 83c6a9f9099e29641bf7621147105b31, type: 2}
-  - {fileID: 2100004, guid: bc37bb8310cd3cd4eb4552cbfc6587b6, type: 3}
+  isOver: 0
+  normalCor: {r: 0.23529412, g: 0.9411765, b: 0.29411766, a: 1}
+  overCor: {r: 0.6862745, g: 1, b: 0, a: 1}
+  seleCor: {r: 1, g: 0.3137255, b: 0, a: 1}
 --- !u!1001 &8913633199318215400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -136,7 +132,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[2]
       value: 
-      objectReference: {fileID: 2100004, guid: bc37bb8310cd3cd4eb4552cbfc6587b6, type: 3}
+      objectReference: {fileID: 2100000, guid: ea628c49eb0d30745b20be880114a8d0, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7e674f61b3c823148951f09f6cf666fb, type: 3}
 --- !u!1 &2193199991090474899 stripped

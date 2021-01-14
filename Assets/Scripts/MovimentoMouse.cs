@@ -16,10 +16,22 @@ public class MovimentoMouse : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // se passar o mouse
+        RaycastHit hitInfo = new RaycastHit();
+        bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
+        if (hit) {
+            if (hitInfo.transform.gameObject.tag == "plataforma") {
+                foreach (Transform p in transform) {
+                    p.transform.GetComponent<platControl>().isOver = false;
+                }
+
+                hitInfo.transform.GetComponent<platControl>().isOver = true;
+            }
+        }
+
+        // se clicar
         if (Input.GetMouseButtonDown(0))
         {
-            RaycastHit hitInfo = new RaycastHit();
-            bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
             if (hit) {
                 if (hitInfo.transform.gameObject.tag == "plataforma") {
                     jogador.transform.position = hitInfo.transform.position;

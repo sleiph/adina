@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MovimentoMouse : MonoBehaviour
+public class TabuleiroControl : MonoBehaviour
 {
     // variaveis
-    public Transform jogador;
+    public Transform[] jogadores;
+    public Transform jogSelec;
 
     // funcoes
     void Start()
@@ -27,6 +28,13 @@ public class MovimentoMouse : MonoBehaviour
 
                 hitInfo.transform.GetComponent<platControl>().isOver = true;
             }
+            else if (hitInfo.transform.gameObject.tag == "Player") {
+                foreach (Transform p in jogadores) {
+                    p.transform.parent.transform.GetComponent<platControl>().isOver = false;
+                }
+
+                hitInfo.transform.parent.parent.GetComponent<platControl>().isOver = true;
+            }
         }
 
         // se clicar
@@ -34,13 +42,21 @@ public class MovimentoMouse : MonoBehaviour
         {
             if (hit) {
                 if (hitInfo.transform.gameObject.tag == "plataforma") {
-                    jogador.transform.position = hitInfo.transform.position;
+                    jogSelec.transform.position = hitInfo.transform.position;
 
                     foreach (Transform p in transform) {
                         p.transform.GetComponent<platControl>().isSelectado = false;
                     }
 
                     hitInfo.transform.GetComponent<platControl>().isSelectado = true;
+                }
+                if (hitInfo.transform.gameObject.tag == "Player") {
+
+                    foreach (Transform p in jogadores) {
+                        p.transform.parent.transform.GetComponent<platControl>().isSelectado = false;
+                    }
+
+                    hitInfo.transform.parent.parent.transform.GetComponent<platControl>().isSelectado = true;
                 }
             }
         } 

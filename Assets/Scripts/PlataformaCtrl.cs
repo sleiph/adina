@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class platControl : MonoBehaviour
+public class PlataformaCtrl : MonoBehaviour
 {
     // variaveis
     public bool isSelectado;
@@ -16,6 +16,7 @@ public class platControl : MonoBehaviour
     public Color normalCor;
     public Color overCor;
     public Color seleCor;
+    public Color possiCor;
 
     // Start is called before the first frame update
     void Start()

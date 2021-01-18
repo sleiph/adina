@@ -6,7 +6,7 @@ public class TabuleiroControl : MonoBehaviour
 {
     // variaveis
     public Transform[] jogadores;
-    public Transform jogSelec;
+    Transform jogSelec;
 
     // funcoes
     void Start()
@@ -22,18 +22,22 @@ public class TabuleiroControl : MonoBehaviour
         bool hit = Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo);
         if (hit) {
             if (hitInfo.transform.gameObject.tag == "plataforma") {
-                foreach (Transform p in transform) {
-                    p.transform.GetComponent<platControl>().isOver = false;
+
+                // pega todos os filhos do tabuleiro
+                foreach (Transform plat in transform) {
+                    plat.transform.GetComponent<PlataformaCtrl>().isOver = false;
                 }
 
-                hitInfo.transform.GetComponent<platControl>().isOver = true;
+                hitInfo.transform.GetComponent<PlataformaCtrl>().isOver = true;
             }
             else if (hitInfo.transform.gameObject.tag == "Player") {
-                foreach (Transform p in jogadores) {
-                    p.transform.parent.transform.GetComponent<platControl>().isOver = false;
+
+                // pega todos os elementos registrados na variável jogadores
+                foreach (Transform j in jogadores) {
+                    j.transform.parent.GetComponent<PlataformaCtrl>().isOver = false;
                 }
 
-                hitInfo.transform.parent.parent.GetComponent<platControl>().isOver = true;
+                hitInfo.transform.parent.parent.GetComponent<PlataformaCtrl>().isOver = true;
             }
         }
 
@@ -42,21 +46,33 @@ public class TabuleiroControl : MonoBehaviour
         {
             if (hit) {
                 if (hitInfo.transform.gameObject.tag == "plataforma") {
+                    jogSelec.parent = hitInfo.transform;
                     jogSelec.transform.position = hitInfo.transform.position;
 
-                    foreach (Transform p in transform) {
-                        p.transform.GetComponent<platControl>().isSelectado = false;
+                    foreach (Transform plat in transform) {
+                        plat.GetComponent<PlataformaCtrl>().isSelectado = false;
+                        plat.GetComponent<MeshCollider>().enabled = false;
                     }
 
-                    hitInfo.transform.GetComponent<platControl>().isSelectado = true;
+                    foreach (Transform jogador in jogadores) {
+                        jogador.GetChild(0).GetComponent<MeshCollider>().enabled = true;
+                    }
+
+                    hitInfo.transform.GetComponent<PlataformaCtrl>().isSelectado = true;
                 }
                 if (hitInfo.transform.gameObject.tag == "Player") {
+                    jogSelec = hitInfo.transform.parent;
 
-                    foreach (Transform p in jogadores) {
-                        p.transform.parent.transform.GetComponent<platControl>().isSelectado = false;
+                    foreach (Transform jogador in jogadores) {
+                        jogador.transform.parent.GetComponent<PlataformaCtrl>().isSelectado = false;
+                        jogador.GetChild(0).GetComponent<MeshCollider>().enabled = false;
                     }
 
-                    hitInfo.transform.parent.parent.transform.GetComponent<platControl>().isSelectado = true;
+                    foreach (Transform plat in transform) {
+                        plat.GetComponent<MeshCollider>().enabled = true;
+                    }
+
+                    hitInfo.transform.parent.parent.GetComponent<PlataformaCtrl>().isSelectado = true;
                 }
             }
         } 

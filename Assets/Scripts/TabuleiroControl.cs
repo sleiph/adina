@@ -64,7 +64,8 @@ public class TabuleiroControl : MonoBehaviour
                     jogSelec = hitInfo.transform.parent;
 
                     foreach (Transform jogador in jogadores) {
-                        jogador.transform.parent.GetComponent<PlataformaCtrl>().isSelectado = false;
+                        jogador.GetComponent<JogadorCtrl>().isSelectado = false;
+                        jogador.parent.GetComponent<PlataformaCtrl>().isSelectado = false;
                         jogador.GetChild(0).GetComponent<MeshCollider>().enabled = false;
                     }
 
@@ -72,6 +73,7 @@ public class TabuleiroControl : MonoBehaviour
                         plat.GetComponent<MeshCollider>().enabled = true;
                     }
 
+                    jogSelec.GetComponent<JogadorCtrl>().isSelectado = true;
                     hitInfo.transform.parent.parent.GetComponent<PlataformaCtrl>().isSelectado = true;
                 }
             }

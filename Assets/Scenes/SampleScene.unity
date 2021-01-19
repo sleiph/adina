@@ -1096,6 +1096,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 120295016}
+  - component: {fileID: 120295015}
   m_Layer: 8
   m_Name: jogaDor
   m_TagString: Player
@@ -1103,6 +1104,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &120295015
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 120295014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea8ba23933821544816c3bf98f90f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelectado: 0
+  normalTex: {fileID: 2800000, guid: 181be4af478102a488185425d9239370, type: 3}
+  seleTex: {fileID: 2800000, guid: 11c942f3172a1414f8a646ece6bb8302, type: 3}
 --- !u!4 &120295016
 Transform:
   m_ObjectHideFlags: 0
@@ -1248,7 +1264,7 @@ MeshRenderer:
   m_GameObject: {fileID: 151301765}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -3023,6 +3039,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 505704045}
+  - component: {fileID: 505704046}
   m_Layer: 8
   m_Name: amigaDor
   m_TagString: Player
@@ -3045,6 +3062,21 @@ Transform:
   m_Father: {fileID: 64366184}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &505704046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 505704044}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aea8ba23933821544816c3bf98f90f40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isSelectado: 0
+  normalTex: {fileID: 2800000, guid: 7342679088c82ec44adba269f8157b45, type: 3}
+  seleTex: {fileID: 2800000, guid: 655a7a77181cbfe42a8ea7457a5ff2ff, type: 3}
 --- !u!1001 &512856795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3965,7 +3997,7 @@ MeshRenderer:
   m_GameObject: {fileID: 634758473}
   m_Enabled: 1
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -11758,21 +11790,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 106377135}
     m_Modifications:
-    - target: {fileID: 7339840373611283835, guid: 7e674f61b3c823148951f09f6cf666fb,
-        type: 3}
-      propertyPath: m_Name
-      value: hexatPrefab Variant (amigo)
-      objectReference: {fileID: 0}
-    - target: {fileID: 7339840373611283835, guid: 7e674f61b3c823148951f09f6cf666fb,
-        type: 3}
-      propertyPath: m_Layer
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 7339840373611283835, guid: 7e674f61b3c823148951f09f6cf666fb,
-        type: 3}
-      propertyPath: m_TagString
-      value: plataforma
-      objectReference: {fileID: 0}
     - target: {fileID: 3062213123565859004, guid: 7e674f61b3c823148951f09f6cf666fb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -11842,6 +11859,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.z
       value: 0.64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339840373611283835, guid: 7e674f61b3c823148951f09f6cf666fb,
+        type: 3}
+      propertyPath: m_Name
+      value: hexatPrefab Variant (amigo)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339840373611283835, guid: 7e674f61b3c823148951f09f6cf666fb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7339840373611283835, guid: 7e674f61b3c823148951f09f6cf666fb,
+        type: 3}
+      propertyPath: m_TagString
+      value: plataforma
       objectReference: {fileID: 0}
     - target: {fileID: 1989886959133333306, guid: 7e674f61b3c823148951f09f6cf666fb,
         type: 3}

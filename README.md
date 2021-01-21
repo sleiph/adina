@@ -2,7 +2,11 @@
 
 Criando um jogo no Unity pra combater o tédio da quarentena, não tenho muitas esperanças, nem um plano definido.
 
-Usando Unity, Blender, Illustrator, Visual Studio Code >> C#
+feito em C#, usando Unity, Blender, Illustrator e Visual Studio Code
+
+Por enquanto eu só estou tentando reproduzir a jogabilidade de um TRPG
 
 ## Fazer
-- Separar as tarefas dos scripts por objeto. eg.: o tabuleiro armazena as variaveis e funções de spawn de peças.
+- Performance
+    - Separar as tarefas dos scripts por objeto. eg.: o tabuleiro armazena as variaveis e funções de spawn de peças.
+    - Tirar os foreachs desnecessários

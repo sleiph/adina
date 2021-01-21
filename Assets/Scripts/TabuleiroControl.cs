@@ -40,6 +40,11 @@ public class TabuleiroControl : MonoBehaviour
                 hitInfo.transform.parent.parent.GetComponent<PlataformaCtrl>().isOver = true;
             }
         }
+        else {
+            foreach (Transform plat in transform) {
+                plat.transform.GetComponent<PlataformaCtrl>().isOver = false;
+            }
+        }
 
         // se clicar
         if (Input.GetMouseButtonDown(0))
@@ -58,7 +63,7 @@ public class TabuleiroControl : MonoBehaviour
                         jogador.GetChild(0).GetComponent<MeshCollider>().enabled = true;
                     }
 
-                    hitInfo.transform.GetComponent<PlataformaCtrl>().isSelectado = true;
+                    jogSelec.GetComponent<JogadorCtrl>().isSelectado = false;
                 }
                 if (hitInfo.transform.gameObject.tag == "Player") {
                     jogSelec = hitInfo.transform.parent;

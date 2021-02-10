@@ -5,21 +5,26 @@ using UnityEngine;
 public class JogadorCtrl : MonoBehaviour
 {
     // variaveis
+    /// o quão longe um jogador pode ir
+    public int mobilidade;
+
+    /// controle de selecao
     public bool isSelectado;
     bool m_isSelectado = false;
 
+    /// o sprite do jogador
     Material sprito;
     
+    /// as texturas do sprite do jogador
     public Texture normalTex;
     public Texture seleTex;
 
-    // Start is called before the first frame update
+    //funcoes
     void Start()
     {
         sprito = transform.GetChild(0).GetComponent<MeshRenderer>().materials[0];
     }
 
-    // Update is called once per frame
     void Update()
     {
         // se o objeto for selecionado

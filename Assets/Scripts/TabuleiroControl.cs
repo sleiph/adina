@@ -5,7 +5,10 @@ using UnityEngine;
 public class TabuleiroControl : MonoBehaviour
 {
     // variaveis
+    /// array com todos os jogadores do tabuleiro
     public Transform[] jogadores;
+
+    /// o jogador selecionado pra andar
     Transform jogSelec;
 
     // funcoes
@@ -14,7 +17,6 @@ public class TabuleiroControl : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update()
     {
         // se passar o mouse

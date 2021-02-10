@@ -5,26 +5,29 @@ using UnityEngine;
 public class PlataformaCtrl : MonoBehaviour
 {
     // variaveis
+    /// controle de selecao
     public bool isSelectado;
     bool m_isSelectado = false;
 
+    /// controle de hover do mouse
     public bool isOver;
     bool m_isOver = false;
 
+    /// a textura da parte de cima da plataforma
     Material topo;
 
+    /// as cores de cada fase da plataforma
     public Color normalCor;
     public Color overCor;
     public Color seleCor;
     public Color possiCor;
 
-    // Start is called before the first frame update
+    // funcoes
     void Start()
     {
         topo = GetComponent<MeshRenderer>().materials[2];
     }
 
-    // Update is called once per frame
     void Update()
     {
         // se o mouse estiver sobre o piso

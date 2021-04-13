@@ -1116,6 +1116,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea8ba23933821544816c3bf98f90f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobilidade: 4
   isSelectado: 0
   normalTex: {fileID: 2800000, guid: 181be4af478102a488185425d9239370, type: 3}
   seleTex: {fileID: 2800000, guid: 11c942f3172a1414f8a646ece6bb8302, type: 3}
@@ -3074,6 +3075,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aea8ba23933821544816c3bf98f90f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mobilidade: 2
   isSelectado: 0
   normalTex: {fileID: 2800000, guid: 7342679088c82ec44adba269f8157b45, type: 3}
   seleTex: {fileID: 2800000, guid: 655a7a77181cbfe42a8ea7457a5ff2ff, type: 3}

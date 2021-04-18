@@ -47,6 +47,7 @@ public class Jogador
     private int estado = 0;
     private int alcance;
     private GameObject corpo;
+    private Peca pai;
     private Material sprite;
 
     // construtor
@@ -89,10 +90,21 @@ public class Jogador
         corpo = o;
     }
 
+    public Peca getPai() {
+        return pai;
+    }
+    public void setPai(Peca p) {
+        pai = p;
+        corpo.transform.parent = pai.getCorpo().transform;
+    }
+
     public Material getMaterial() {
         return sprite;
     }
     public void setMaterial(Material m) {
+        Material[] tempMats = {m};
+        corpo.transform.GetChild(0)
+            .GetComponent<Renderer>().materials = tempMats;
         sprite = m;
     }
 }
@@ -100,19 +112,16 @@ public class Jogador
 public class Aliado : Jogador
 {
     // variaveis do objeto
-    private static int importancia;
+    private int importancia;
 
     public Aliado(float xPos, float zPos, int alc) : base(xPos, zPos, alc)
     {
 
     }
 
-    static Aliado()
-    {
-        importancia = 1;
-    }
-
-    
+    public void Selecionar() {
+        //this.getCorpo().transform.parent
+    }    
 }
 
 public class Inimigo : Jogador
@@ -136,8 +145,12 @@ public class Inimigo : Jogador
 public class TabuleiroControl : MonoBehaviour
 {
     // variaveis
+    public int[] tamanhoTabuleiro = new int[2];
     public GameObject platPrefab;
     public GameObject jogPrefab;
+    public Material[] matAliados = new Material[10];
+
+    private bool isAliadoTurno = true;
     private int nAliados = 0;
     private int nMigos = 0;
 
@@ -170,10 +183,10 @@ public class TabuleiroControl : MonoBehaviour
             Quaternion.identity
         );
 
-        myAliado.transform.parent = tabuleiro[
-            (int)xPos, (int)zPos
-        ].getCorpo().transform;
         aliado.setCorpo(myAliado);
+        aliado.setPai(tabuleiro[ (int)xPos, (int)zPos ]);
+        aliado.setMaterial(matAliados[nAliados]);
+
         amigos[nAliados] = aliado;
 
         nAliados++;
@@ -181,12 +194,10 @@ public class TabuleiroControl : MonoBehaviour
 
     void Start()
     {
-        tabuleiroSpawn(10, 10);
+        tabuleiroSpawn(tamanhoTabuleiro[0], tamanhoTabuleiro[1]);
 
-        Debug.Log(tabuleiro[2, 7].getCorpo().transform.position);
-
-        aliadoSpawn(4, 4, 2);
-        aliadoSpawn(8, 2, 3);
+        aliadoSpawn(7, 4, 1);
+        aliadoSpawn(5, 2, 3);
     }
 
     void Update()

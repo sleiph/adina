@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class Peca
+class Peca
 {
     // variaveis do objeto
     private float x;
@@ -39,7 +39,7 @@ public class Peca
     }
 }
 
-public class Jogador
+class Jogador
 {
     // variaveis do objeto
     private float x;
@@ -109,7 +109,7 @@ public class Jogador
     }
 }
 
-public class Aliado : Jogador
+class Aliado : Jogador
 {
     // variaveis do objeto
     private int importancia;
@@ -124,7 +124,7 @@ public class Aliado : Jogador
     }    
 }
 
-public class Inimigo : Jogador
+class Inimigo : Jogador
 {
     // variaveis do objeto
     private static int importancia;

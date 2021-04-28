@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
-class Peca
+public class Peca
 {
     // variaveis do objeto
     private float x;
@@ -39,23 +40,24 @@ class Peca
     }
 }
 
-class Jogador
+public class Jogador
 {
     // variaveis do objeto
-    private float x;
-    private float z;
+    public int x;
+    public int z;
     private int estado = 0;
-    private int alcance;
+    public int alcance;
     private GameObject corpo;
     private Peca pai;
-    private Material sprite;
+    public Material sprite;
 
     // construtor
-    public Jogador(float xPos, float zPos, int alc)
+    public Jogador(int xPos, int zPos, int alc, Material spr)
     {
         x = xPos;
         z = zPos;
         alcance = alc;
+        sprite = spr;
     }
 
     public int getEstado() {
@@ -67,18 +69,20 @@ class Jogador
 
     public Vector3 getPos()
     {
+        if (z%2!=0)
+            return new Vector3(x-0.5f, 0, z);
         return new Vector3(x, 0, z);
     }
-    public void setPos(float xPos, float zPos) {
+    public void setPos(int xPos, int zPos) {
         x = xPos;
         z = zPos;
     }
 
-    public float getX()
+    public int getX()
     {
         return x;
     }
-    public float getZ()
+    public int getZ()
     {
         return z;
     }
@@ -101,20 +105,22 @@ class Jogador
     public Material getMaterial() {
         return sprite;
     }
-    public void setMaterial(Material m) {
-        Material[] tempMats = {m};
+    public void setMaterial() {
+        Material[] tempMats = { sprite };
         corpo.transform.GetChild(0)
             .GetComponent<Renderer>().materials = tempMats;
-        sprite = m;
     }
 }
 
-class Aliado : Jogador
+[Serializable]
+public class Aliado : Jogador
 {
     // variaveis do objeto
     private int importancia;
 
-    public Aliado(float xPos, float zPos, int alc) : base(xPos, zPos, alc)
+    public Aliado(
+        int xPos, int zPos, int alc, Material spr
+    ) : base(xPos, zPos, alc, spr)
     {
 
     }
@@ -124,12 +130,15 @@ class Aliado : Jogador
     }    
 }
 
-class Inimigo : Jogador
+[Serializable]
+public class Inimigo : Jogador
 {
     // variaveis do objeto
     private static int importancia;
 
-    public Inimigo(float xPos, float zPos, int alc) : base(xPos, zPos, alc)
+    public Inimigo(
+        int xPos, int zPos, int alc, Material spr
+    ) : base(xPos, zPos, alc, spr)
     {
         
     }
@@ -145,18 +154,17 @@ class Inimigo : Jogador
 public class TabuleiroControl : MonoBehaviour
 {
     // variaveis
-    public int[] tamanhoTabuleiro = new int[2];
     public GameObject platPrefab;
     public GameObject jogPrefab;
-    public Material[] matAliados = new Material[10];
 
     private bool isAliadoTurno = true;
-    private int nAliados = 0;
-    private int nMigos = 0;
+    
+    public int[] tamanhoTabuleiro = new int[2];
+    Peca[,] tabuleiro = new Peca[99, 99];
 
-    Peca[,] tabuleiro = new Peca[10,10];
-    Aliado[] amigos = new Aliado[5];
-    Inimigo[] inimigos = new Inimigo[5];
+    public Aliado[] amigos = new Aliado[5];
+
+    public Inimigo[] inimigos = new Inimigo[5];
 
     // funcoes
     void tabuleiroSpawn(int tamanhoX, int tamanhoZ) {
@@ -174,30 +182,25 @@ public class TabuleiroControl : MonoBehaviour
         }
     }
 
-    void aliadoSpawn(float xPos, float zPos, int alcance) {
-        Aliado aliado = new Aliado(xPos, zPos, alcance);
+    void aliadoSpawn(Aliado a) {
 
         GameObject myAliado = Instantiate(
             jogPrefab,
-            aliado.getPos(),
+            a.getPos(),
             Quaternion.identity
         );
 
-        aliado.setCorpo(myAliado);
-        aliado.setPai(tabuleiro[ (int)xPos, (int)zPos ]);
-        aliado.setMaterial(matAliados[nAliados]);
-
-        amigos[nAliados] = aliado;
-
-        nAliados++;
+        a.setCorpo(myAliado);
+        a.setPai(tabuleiro[ a.getX(), a.getZ() ]);
+        a.setMaterial();
     }
 
     void Start()
     {
         tabuleiroSpawn(tamanhoTabuleiro[0], tamanhoTabuleiro[1]);
 
-        aliadoSpawn(7, 4, 1);
-        aliadoSpawn(5, 2, 3);
+        foreach (Aliado a in amigos)
+            aliadoSpawn(a);
     }
 
     void Update()

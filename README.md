@@ -6,6 +6,9 @@ feito em C#, usando Unity, Blender, Illustrator e Visual Studio Code
 
 Por enquanto eu só estou tentando reproduzir a jogabilidade de um TRPG
 
+## Como usar
+O controle do jogo tá sendo feito pelo componente tabuleiro.
+
 ## Fazer
 - Performance
     - Separar as tarefas dos scripts por objeto. eg.: o tabuleiro armazena as variaveis e funções de spawn de peças.

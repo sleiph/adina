@@ -45,7 +45,7 @@ public class Jogador
     // variaveis do objeto
     public int x;
     public int z;
-    private int estado = 0;
+    private int estado { get; set; }
     public int alcance;
     private GameObject corpo;
     private Peca pai;
@@ -58,13 +58,7 @@ public class Jogador
         z = zPos;
         alcance = alc;
         sprite = spr;
-    }
-
-    public int getEstado() {
-        return estado;
-    }
-    public void setEstado(int e) {
-        estado = e;
+        estado = 0;
     }
 
     public Vector3 getPos()

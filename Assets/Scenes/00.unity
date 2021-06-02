@@ -155,22 +155,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fbff429cf29afb84194e75e9324fe833, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tamanhoTabuleiro: 0800000009000000
   platPrefab: {fileID: 2193199991090474899, guid: 6437ce8c1add4bc4b8360fc518d28ad3,
     type: 3}
   jogPrefab: {fileID: 8864537287715125688, guid: 6013096b26f261743bff4ce5fa8c8091,
     type: 3}
-  matAliados:
-  - {fileID: 2100000, guid: 26c797c30d2aa1d479b816418887bef8, type: 2}
-  - {fileID: 2100000, guid: 0177fc20ef70a104fa07bdfa44643d72, type: 2}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  tamanhoTabuleiro: 0800000009000000
+  amigos:
+  - x: 7
+    z: 4
+    alcance: 4
+    sprite: {fileID: 2100000, guid: 26c797c30d2aa1d479b816418887bef8, type: 2}
+  - x: 2
+    z: 3
+    alcance: 3
+    sprite: {fileID: 2100000, guid: 0177fc20ef70a104fa07bdfa44643d72, type: 2}
+  inimigos:
+  - x: 0
+    z: 0
+    alcance: 0
+    sprite: {fileID: 0}
+  - x: 0
+    z: 0
+    alcance: 0
+    sprite: {fileID: 0}
+  - x: 0
+    z: 0
+    alcance: 0
+    sprite: {fileID: 0}
+  - x: 0
+    z: 0
+    alcance: 0
+    sprite: {fileID: 0}
+  - x: 0
+    z: 0
+    alcance: 0
+    sprite: {fileID: 0}
 --- !u!1 &482504823
 GameObject:
   m_ObjectHideFlags: 0

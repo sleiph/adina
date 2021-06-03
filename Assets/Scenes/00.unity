@@ -161,27 +161,15 @@ MonoBehaviour:
     type: 3}
   tamanhoTabuleiro: 0800000009000000
   amigos:
-  - x: 7
-    z: 4
-    alcance: 4
-    sprite: {fileID: 2100000, guid: 26c797c30d2aa1d479b816418887bef8, type: 2}
   - x: 2
-    z: 3
+    z: 4
     alcance: 3
+    sprite: {fileID: 2100000, guid: 26c797c30d2aa1d479b816418887bef8, type: 2}
+  - x: 7
+    z: 1
+    alcance: 4
     sprite: {fileID: 2100000, guid: 0177fc20ef70a104fa07bdfa44643d72, type: 2}
   inimigos:
-  - x: 0
-    z: 0
-    alcance: 0
-    sprite: {fileID: 0}
-  - x: 0
-    z: 0
-    alcance: 0
-    sprite: {fileID: 0}
-  - x: 0
-    z: 0
-    alcance: 0
-    sprite: {fileID: 0}
   - x: 0
     z: 0
     alcance: 0

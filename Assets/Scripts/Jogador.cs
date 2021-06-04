@@ -5,21 +5,22 @@ public class Jogador
     // variaveis do objeto
     public int x;
     public int z;
-    private int estado { get; set; }
     private GameObject corpo;
     public Peca pai;
     public Material sprite;
 
     // construtor
-    Jogador() {}
+    Jogador() {
+
+    }
     public Jogador(int xPos, int zPos, Material spr)
     {
         x = xPos;
         z = zPos;
         sprite = spr;
-        estado = 0;
     }
 
+    // getters n setters
     public Vector3 getPos()
     {
         if (z%2 != 0)

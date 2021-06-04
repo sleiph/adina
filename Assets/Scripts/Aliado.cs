@@ -7,18 +7,23 @@ public class Aliado : Jogador
     // variaveis do objeto
     public int alcance;
     private int importancia { get; set; }
+    private bool isSelecionado { get; set; }
 
     Aliado(
         int xPos, int zPos, int alc, Material spr
     ) : base(xPos, zPos, spr)
     {
         alcance = alc;
+        isSelecionado = false;
     }
 
+    // estado
     public void Deselecionar() {
-        pai.setDeselecionado();
+        isSelecionado = false;
+        pai.Inicial();
     }  
     public void Selecionar() {
-        pai.setSelecionado();
+        isSelecionado = true;
+        pai.Selecionado();
     }    
 }

@@ -46,6 +46,32 @@ public class TabuleiroControl : MonoBehaviour
         a.setMaterial();
     }
 
+    void setJogada(Vector3 posicao) {
+        int alcance = 1;
+        int x = (int)posicao.x;
+        int z = (int)posicao.z;
+
+        foreach (Aliado a in amigos) {
+            if (a.getPos() == posicao) {
+                a.Selecionar();
+                alcance = a.alcance;
+            }
+            else
+                a.Deselecionar();
+        }
+
+        Debug.Log(x + " " + z + " " + alcance);
+        for (int i=x-alcance; i<x+alcance; i++) {
+            for (int j=z-alcance; j<z+alcance; j++) {
+                Debug.Log(i + " " + j);
+                if (i>=0 && i<tamanhoTabuleiro[0]
+                &&  j>=0 && j<tamanhoTabuleiro[1]) {
+                    tabuleiro[i, j].Disponivel();
+                }
+            }
+        }
+    }
+
     void Start()
     {
         tabuleiroSpawn(tamanhoTabuleiro[0], tamanhoTabuleiro[1]);
@@ -66,14 +92,7 @@ public class TabuleiroControl : MonoBehaviour
             if (Input.GetMouseButtonDown(0)) {
                 if (hit) {
                     if (hitInfo.transform.gameObject.tag == "Player") {
-                        Vector3 temPos = hitInfo.transform.parent.position;
-
-                        foreach (Aliado a in amigos) {
-                            if (a.getPos() == temPos)
-                                a.Selecionar();
-                            else
-                                a.Deselecionar();
-                        }
+                        setJogada( hitInfo.transform.parent.position );                        
                     }
                 }
             }

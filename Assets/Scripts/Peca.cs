@@ -22,6 +22,7 @@ public class Peca
         z = zPos;
     }
 
+    // getters n setters
     public Vector3 getPos()
     {
         return new Vector3(x, 0, z);
@@ -37,15 +38,22 @@ public class Peca
     public void setCorpo(GameObject o) {
         corpo = o;
         topo = corpo.GetComponent<MeshRenderer>().materials[2];
-        setDeselecionado();
+        Inicial();
     }
 
-    public void setDeselecionado() {
+    // estados
+    public void Inicial() {
         estado = 0;
         topo.SetColor("_Color", new Color(110f/255f, 230f/255f, 120f/255f) );
     } 
-    public void setSelecionado() {
+    public void Selecionado() {
         estado = 1;
         topo.SetColor("_Color", new Color(45f/255f, 166f/255f, 81f/255f) );
-    } 
+    }
+
+    public void Disponivel() {
+        estado = 2;
+        topo.SetColor("_Color", new Color(250f/255f, 195f/255f, 0f/255f) );
+    }
+
 }

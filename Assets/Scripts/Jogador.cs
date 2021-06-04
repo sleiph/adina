@@ -6,18 +6,16 @@ public class Jogador
     public int x;
     public int z;
     private int estado { get; set; }
-    public int alcance;
     private GameObject corpo;
-    private Peca pai;
+    public Peca pai;
     public Material sprite;
 
     // construtor
     Jogador() {}
-    public Jogador(int xPos, int zPos, int alc, Material spr)
+    public Jogador(int xPos, int zPos, Material spr)
     {
         x = xPos;
         z = zPos;
-        alcance = alc;
         sprite = spr;
         estado = 0;
     }

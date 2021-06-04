@@ -56,6 +56,27 @@ public class TabuleiroControl : MonoBehaviour
 
     void Update()
     {
-        
+        if (isAliadoTurno) {
+            RaycastHit hitInfo = new RaycastHit();
+            bool hit = Physics.Raycast(
+                Camera.main.ScreenPointToRay(Input.mousePosition),
+                out hitInfo
+            );
+
+            if (Input.GetMouseButtonDown(0)) {
+                if (hit) {
+                    if (hitInfo.transform.gameObject.tag == "Player") {
+                        Vector3 temPos = hitInfo.transform.parent.position;
+
+                        foreach (Aliado a in amigos) {
+                            if (a.getPos() == temPos)
+                                a.Selecionar();
+                            else
+                                a.Deselecionar();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

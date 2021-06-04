@@ -9,7 +9,7 @@ public class Inimigo : Jogador
 
     Inimigo(
         int xPos, int zPos, int alc, Material spr
-    ) : base(xPos, zPos, alc, spr)
+    ) : base(xPos, zPos, spr)
     {
         
     }

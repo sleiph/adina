@@ -1,17 +1,20 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using UnityEngine;
 
 public class TabuleiroControl : MonoBehaviour
 {
     // variaveis
-    public GameObject platPrefab;
-    public GameObject jogPrefab;
+    public GameObject jogadoresPrefab;
+    public GameObject plataformaPrefab;
 
-    private bool isAliadoTurno = true;
+    private bool isAliadoTurno = true,
+                 isPecaSelecionada = false;
     
-    public int[] tamanhoTabuleiro = new int[2];
-    Peca[,] tabuleiro;
+    public int larguraTabuleiro,
+                alturaTabuleiro;
 
-    public Aliado[] amigos = new Aliado[5];
+    public Aliado[] aliados = new Aliado[5];
 
     public Inimigo[] inimigos = new Inimigo[5];
 
@@ -25,7 +28,7 @@ public class TabuleiroControl : MonoBehaviour
                 if (j%2!=0) {
                     peca.setPos(i-0.5f, j);
                 }
-                GameObject myPeca = Instantiate(platPrefab, peca.getPos(), Quaternion.identity);
+                GameObject myPeca = Instantiate(plataformaPrefab, peca.getPos(), Quaternion.identity);
                 myPeca.transform.parent = this.transform;
                 peca.setCorpo(myPeca);
                 tabuleiro[i, j] = peca;
@@ -46,13 +49,54 @@ public class TabuleiroControl : MonoBehaviour
         a.setMaterial();
     }
 
-    void setJogada(Vector3 posicao) {
+    List<Peca> GetVizinhos(int x, int z, int alcance) {
+        List<Peca> vizinhos = new List<Peca>();
+
+        for (int i=x-alcance; i<=x+alcance; i++) {
+            if (i>=0 && i<tamanhoTabuleiro[0]) {
+                if (z%2 == 0) {
+                    if (i==x-alcance) {
+                        vizinhos.Add(tabuleiro[i, z]);
+                    }
+                    else {
+                        for (int j=z-alcance; j<=z+alcance; j++) {
+                            if (j>=0 && j<tamanhoTabuleiro[1]) {
+                                if (i == x && j == z)
+                                    continue;
+                                else
+                                    vizinhos.Add(tabuleiro[i, j]);
+                            }
+                        }
+                    }
+                }
+                else {
+                    if (i==x+alcance) {
+                        vizinhos.Add(tabuleiro[i, z]);
+                    }
+                    else {
+                        for (int j=z-alcance; j<=z+alcance; j++) {
+                            if (j>=0 && j<tamanhoTabuleiro[1]) {
+                                if (i == x && j == z)
+                                    continue;
+                                else
+                                    vizinhos.Add(tabuleiro[i, j]);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return vizinhos;
+    }
+
+    public void setJogada(Vector3 posicao) {
         int alcance = 1;
-        int x = (int)posicao.x;
-        int z = (int)posicao.z;
+        int x = (int)Math.Ceiling(posicao.x),
+            z = (int)posicao.z;
 
         foreach (Aliado a in amigos) {
-            if (a.getPos() == posicao) {
+            Vector3 temPos = a.getPos();
+            if (temPos == posicao) {
                 a.Selecionar();
                 alcance = a.alcance;
             }
@@ -60,15 +104,12 @@ public class TabuleiroControl : MonoBehaviour
                 a.Deselecionar();
         }
 
-        Debug.Log(x + " " + z + " " + alcance);
-        for (int i=x-alcance; i<x+alcance; i++) {
-            for (int j=z-alcance; j<z+alcance; j++) {
-                Debug.Log(i + " " + j);
-                if (i>=0 && i<tamanhoTabuleiro[0]
-                &&  j>=0 && j<tamanhoTabuleiro[1]) {
-                    tabuleiro[i, j].Disponivel();
-                }
-            }
+        foreach (Peca p in vizinhos) {
+            p.Inicial();
+        }
+        vizinhos = GetVizinhos(x, z, alcance);
+        foreach (Peca p in vizinhos) {
+            p.Disponivel();
         }
     }
 

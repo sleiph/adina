@@ -17,7 +17,7 @@ public class Aliado : Jogador
         isSelecionado = false;
     }
 
-    // estado
+    // estados
     public void Deselecionar() {
         isSelecionado = false;
         pai.Inicial();

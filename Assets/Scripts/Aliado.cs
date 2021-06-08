@@ -20,10 +20,10 @@ public class Aliado : Jogador
     // estados
     public void Deselecionar() {
         isSelecionado = false;
-        pai.Inicial();
+        pai.setEstado(0);
     }  
     public void Selecionar() {
         isSelecionado = true;
-        pai.Selecionado();
+        pai.setEstado(1);
     }    
 }

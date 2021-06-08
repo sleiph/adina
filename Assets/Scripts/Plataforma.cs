@@ -10,26 +10,32 @@ public class Plataforma
     private GameObject corpo { get; set; }
     private Material topo;
 
-    private Plataforma NO, ND, O, D, SO, SD;
+    public Plataforma NE, ND, D, SD, SE, E;
 
     private Jogador filho { get; set; }
 
     // construtor
+    public Plataforma(Vector3 pos)
+    {
+        posicao = pos;
+        NE=null; ND=null; D=null; SD=null; SE=null; E=null;
+    }
     Plataforma(Vector3 pos, GameObject c)
     {
         posicao = pos;
         corpo = c;
         topo = corpo.GetComponent<MeshRenderer>().materials[2];
         setEstado(0);
-        NO=null; ND=null; O=null; D=null; SO=null; SD=null;
+        NE=null; ND=null; D=null; SD=null; SE=null; E=null;
     }
 
     public GameObject getCorpo() {
         return corpo;
     }
-    public void setCorpo(GameObject o) {
-        corpo = o;
+    public void setCorpo(GameObject c) {
+        corpo = c;
         topo = corpo.GetComponent<MeshRenderer>().materials[2];
+        setEstado(0);
     }
 
     public void setEstado(int e) {

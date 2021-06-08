@@ -6,7 +6,7 @@ public class Jogador
     public int x;
     public int z;
     private GameObject corpo;
-    public Peca pai;
+    public Plataforma pai;
     public Material sprite;
 
     // construtor
@@ -39,10 +39,10 @@ public class Jogador
         corpo = o;
     }
 
-    public Peca getPai() {
+    public Plataforma getPai() {
         return pai;
     }
-    public void setPai(Peca p) {
+    public void setPai(Plataforma p) {
         pai = p;
         corpo.transform.parent = pai.getCorpo().transform;
     }

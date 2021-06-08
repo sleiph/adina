@@ -20,7 +20,8 @@ public class TabuleiroControl : MonoBehaviour
 
     // funcoes
     void tabuleiroSpawn(int tamanhoX, int tamanhoZ) {
-        tabuleiro = new Peca[tamanhoX, tamanhoZ];
+        /*
+        tabuleiro = new Plataforma[tamanhoX, tamanhoZ];
 
         for (int i=0; i<tamanhoX; i++) {
             for (int j=0; j<tamanhoZ; j++) {
@@ -33,11 +34,11 @@ public class TabuleiroControl : MonoBehaviour
                 peca.setCorpo(myPeca);
                 tabuleiro[i, j] = peca;
             }
-        }
+        }*/
     }
 
     void aliadoSpawn(Aliado a) {
-
+        /*
         GameObject myAliado = Instantiate(
             jogPrefab,
             a.getPos(),
@@ -47,9 +48,12 @@ public class TabuleiroControl : MonoBehaviour
         a.setCorpo(myAliado);
         a.setPai(tabuleiro[ a.x, a.z ]);
         a.setMaterial();
+        */
     }
 
+    /*
     List<Peca> GetVizinhos(int x, int z, int alcance) {
+        
         List<Peca> vizinhos = new List<Peca>();
 
         for (int i=x-alcance; i<=x+alcance; i++) {
@@ -87,9 +91,11 @@ public class TabuleiroControl : MonoBehaviour
             }
         }
         return vizinhos;
-    }
+        
+    }*/
 
     public void setJogada(Vector3 posicao) {
+        /*
         int alcance = 1;
         int x = (int)Math.Ceiling(posicao.x),
             z = (int)posicao.z;
@@ -110,19 +116,22 @@ public class TabuleiroControl : MonoBehaviour
         vizinhos = GetVizinhos(x, z, alcance);
         foreach (Peca p in vizinhos) {
             p.Disponivel();
-        }
+        }*/
     }
 
     void Start()
     {
+        /*
         tabuleiroSpawn(tamanhoTabuleiro[0], tamanhoTabuleiro[1]);
 
         foreach (Aliado a in amigos)
             aliadoSpawn(a);
+        */
     }
 
     void Update()
     {
+        /*
         if (isAliadoTurno) {
             RaycastHit hitInfo = new RaycastHit();
             bool hit = Physics.Raycast(
@@ -138,5 +147,6 @@ public class TabuleiroControl : MonoBehaviour
                 }
             }
         }
+        */
     }
 }

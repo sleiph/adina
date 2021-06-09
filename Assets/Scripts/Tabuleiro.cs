@@ -1,61 +1,91 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 public class Tabuleiro
 {
-    Plataforma raiz;
     private int tamanho;
 
-    Tabuleiro(int t) {
-        raiz = null;
+    public Dictionary<Vector3, Plataforma> tabuleiro;
+
+    public Tabuleiro(int t) {
         tamanho = t;
+        tabuleiro = new Dictionary<Vector3, Plataforma>();
+        Plataforma raiz = new Plataforma(new Vector3(0, 0, 0));
+        tabuleiro = setTabuleiro(raiz, tabuleiro, tamanho);
     }
 
-    public void Adiciona(Plataforma raiz, Vector3 v, int t) {
-        while (t > 0) {
-            Plataforma nova = new Plataforma(v);
-            if (raiz == null) {
-                raiz = nova;
-            }
-            else {
-                if (raiz.NE == null) {
-                    nova.SD = raiz;
-                    raiz.NE = nova;
-                }
-                else if (raiz.ND == null) {
-                    nova.SE = raiz;
-                    nova.E = raiz.NE;
-                    raiz.ND = nova;
-                    raiz.NE.D = nova;
-                }
-                else if (raiz.D == null) {
-                    nova.E = raiz;
-                    nova.NE = raiz.ND;
-                    raiz.D = nova;
-                    raiz.ND.SD = nova;
-                }
-                else if (raiz.SD == null) {
-                    nova.NE = raiz;
-                    nova.ND = raiz.D;
-                    raiz.SD = nova;
-                    raiz.D.SE = nova;
-                }
-                else if (raiz.SE == null) {
-                    nova.ND = raiz;
-                    nova.D = raiz.SD;
-                    raiz.SE = nova;
-                    raiz.SD.E = nova;
-                }
-                else if (raiz.E == null) {
-                    nova.D = raiz;
-                    nova.SD = raiz.SE;
-                    nova.ND = raiz.NE;
-                    raiz.E = nova;
-                    raiz.SE.NE = nova;
-                    raiz.NE.SE = nova;
-                }
-            }
-            raiz = raiz.NE;
-            t-=1;
+    public Dictionary<Vector3, Plataforma> setTabuleiro(
+        Plataforma p, Dictionary<Vector3, Plataforma> tabuleiroHash, int t
+    ) {
+        if (t == 0)
+            return tabuleiroHash;
+        
+        if (!tabuleiroHash.ContainsKey(p.posicao)) {
+            tabuleiroHash[p.posicao] = p;
         }
+
+        Vector3 posNE = new Vector3(p.posicao.x, p.posicao.y+1, p.posicao.z-1);
+        Vector3 posD = new Vector3(p.posicao.x+1, p.posicao.y-1, p.posicao.z);
+        Vector3 posSE = new Vector3(p.posicao.x-1, p.posicao.y, p.posicao.z+1);
+        Vector3 posND = new Vector3(p.posicao.x+1, p.posicao.y, p.posicao.z-1);
+        Vector3 posE = new Vector3(p.posicao.x-1, p.posicao.y+1, p.posicao.z);
+        Vector3 posSD = new Vector3(p.posicao.x, p.posicao.y-1, p.posicao.z+1);
+
+        if (!tabuleiroHash.ContainsKey(posNE)) {
+            Plataforma nova = new Plataforma(posNE);
+            p.NE = nova;
+            tabuleiroHash[posNE] = nova;
+        }
+        else
+            p.NE = tabuleiroHash[posNE];
+        setTabuleiro(p.NE, tabuleiroHash, t-1);
+
+        if (!tabuleiroHash.ContainsKey(posD)) {
+            Plataforma nova = new Plataforma(posD);
+            p.D = nova;
+            tabuleiroHash[posD] = nova;
+        }
+        else
+            p.D = tabuleiroHash[posD];
+        setTabuleiro(p.D, tabuleiroHash, t-1);
+
+        if (!tabuleiroHash.ContainsKey(posSE)) {
+            Plataforma nova = new Plataforma(posSE);
+            p.SE = nova;
+            tabuleiroHash[posSE] = nova;
+        }
+        else
+            p.SE = tabuleiroHash[posSE];
+        setTabuleiro(p.SE, tabuleiroHash, t-1);
+
+        if (!tabuleiroHash.ContainsKey(posND)) {
+            Plataforma nova = new Plataforma(posND);
+            p.ND = nova;
+            tabuleiroHash[posND] = nova;
+        }
+        else
+            p.ND = tabuleiroHash[posND];
+        setTabuleiro(p.ND, tabuleiroHash, t-1);
+
+        if (!tabuleiroHash.ContainsKey(posE)) {
+            Plataforma nova = new Plataforma(posE);
+            p.E = nova;
+            tabuleiroHash[posE] = nova;
+        }
+        else
+            p.ND = tabuleiroHash[posE];
+        setTabuleiro(p.ND, tabuleiroHash, t-1);
+
+        if (!tabuleiroHash.ContainsKey(posSD)) {
+            Plataforma nova = new Plataforma(posSD);
+            p.SD = nova;
+            tabuleiroHash[posSD] = nova;
+        }
+        else
+            p.SD = tabuleiroHash[posSD];
+        setTabuleiro(p.SD, tabuleiroHash, t-1);
+
+        return tabuleiroHash;
     }
+
 }

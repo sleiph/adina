@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8864537287715125686}
   m_Layer: 8
-  m_Name: jogaDor
+  m_Name: jogadorPrefab
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

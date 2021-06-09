@@ -11,30 +11,25 @@ public class TabuleiroControl : MonoBehaviour
     private bool isAliadoTurno = true,
                  isPecaSelecionada = false;
     
-    public int larguraTabuleiro,
-                alturaTabuleiro;
+    public int tamanhoTabuleiro;
+    Tabuleiro myTabuleiro;
 
     public Aliado[] aliados = new Aliado[5];
 
     public Inimigo[] inimigos = new Inimigo[5];
 
     // funcoes
-    void tabuleiroSpawn(int tamanhoX, int tamanhoZ) {
-        /*
-        tabuleiro = new Plataforma[tamanhoX, tamanhoZ];
+    void tabuleiroSpawn() {
+        myTabuleiro = new Tabuleiro(tamanhoTabuleiro);
 
-        for (int i=0; i<tamanhoX; i++) {
-            for (int j=0; j<tamanhoZ; j++) {
-                Peca peca = new Peca(i, j);
-                if (j%2!=0) {
-                    peca.setPos(i-0.5f, j);
-                }
-                GameObject myPeca = Instantiate(plataformaPrefab, peca.getPos(), Quaternion.identity);
-                myPeca.transform.parent = this.transform;
-                peca.setCorpo(myPeca);
-                tabuleiro[i, j] = peca;
-            }
-        }*/
+        foreach(KeyValuePair<Vector3, Plataforma> p in myTabuleiro.tabuleiro)
+        {
+            GameObject myPlataforma = Instantiate(
+                plataformaPrefab, p.Key, Quaternion.Euler(new Vector3(55, 45, 0))
+            );
+            myPlataforma.transform.parent = this.transform;
+            p.Value.setCorpo(myPlataforma);
+        }
     }
 
     void aliadoSpawn(Aliado a) {
@@ -121,6 +116,7 @@ public class TabuleiroControl : MonoBehaviour
 
     void Start()
     {
+        tabuleiroSpawn();
         /*
         tabuleiroSpawn(tamanhoTabuleiro[0], tamanhoTabuleiro[1]);
 

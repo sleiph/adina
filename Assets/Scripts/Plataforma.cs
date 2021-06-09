@@ -3,7 +3,7 @@
 public class Plataforma
 {
     // variaveis do objeto
-    private Vector3 posicao { get; set; }
+    public Vector3 posicao { get; set; }
 
     private int estado { get; set; }
 

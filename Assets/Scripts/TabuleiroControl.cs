@@ -6,17 +6,18 @@ public class TabuleiroControl : MonoBehaviour
 {
     // variaveis
     public GameObject jogadoresPrefab;
-    public GameObject plataformaPrefab;
-
-    private bool isAliadoTurno = true,
-                 isPecaSelecionada = false;
-    
-    public int tamanhoTabuleiro;
-    Tabuleiro myTabuleiro;
 
     public Aliado[] aliados = new Aliado[5];
 
     public Inimigo[] inimigos = new Inimigo[5];
+
+    public GameObject plataformaPrefab;
+    
+    public int tamanhoTabuleiro;
+    Tabuleiro myTabuleiro;
+
+    private bool isAliadoTurno = true,
+                 isPecaSelecionada = false;
 
     // funcoes
     void tabuleiroSpawn() {
@@ -32,18 +33,18 @@ public class TabuleiroControl : MonoBehaviour
         }
     }
 
-    void aliadoSpawn(Aliado a) {
-        /*
-        GameObject myAliado = Instantiate(
-            jogPrefab,
-            a.getPos(),
-            Quaternion.identity
-        );
-        
-        a.setCorpo(myAliado);
-        a.setPai(tabuleiro[ a.x, a.z ]);
-        a.setMaterial();
-        */
+    void aliadoSpawn() {
+        foreach (Aliado a in aliados) {
+            GameObject myAliado = Instantiate(
+                jogadoresPrefab,
+                a.getPos(),
+                Quaternion.identity
+            );
+            
+            a.setCorpo(myAliado);
+            a.setPai(myTabuleiro.tabuleiro[a.getPos()]);
+            a.setMaterial();
+        }
     }
 
     /*
@@ -117,12 +118,7 @@ public class TabuleiroControl : MonoBehaviour
     void Start()
     {
         tabuleiroSpawn();
-        /*
-        tabuleiroSpawn(tamanhoTabuleiro[0], tamanhoTabuleiro[1]);
-
-        foreach (Aliado a in amigos)
-            aliadoSpawn(a);
-        */
+        aliadoSpawn();
     }
 
     void Update()

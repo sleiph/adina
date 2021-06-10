@@ -10,8 +10,8 @@ public class Aliado : Jogador
     private bool isSelecionado { get; set; }
 
     Aliado(
-        int xPos, int zPos, int alc, Material spr
-    ) : base(xPos, zPos, spr)
+        Vector3 pos, Material spr, int alc
+    ) : base(pos, spr)
     {
         alcance = alc;
         isSelecionado = false;
@@ -20,10 +20,10 @@ public class Aliado : Jogador
     // estados
     public void Deselecionar() {
         isSelecionado = false;
-        pai.setEstado(0);
+        this.getPai().setEstado(0);
     }  
     public void Selecionar() {
         isSelecionado = true;
-        pai.setEstado(1);
+        this.getPai().setEstado(1);
     }    
 }

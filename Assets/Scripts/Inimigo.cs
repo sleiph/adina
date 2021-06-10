@@ -8,8 +8,8 @@ public class Inimigo : Jogador
     private static int importancia { get; set; }
 
     Inimigo(
-        int xPos, int zPos, int alc, Material spr
-    ) : base(xPos, zPos, spr)
+        Vector3 pos, Material spr, int alc
+    ) : base(pos, spr)
     {
         
     }

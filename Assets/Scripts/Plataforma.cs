@@ -5,7 +5,7 @@ public class Plataforma
     // variaveis do objeto
     public Vector3 posicao { get; set; }
 
-    private int estado { get; set; }
+    private int estado;
 
     private GameObject corpo { get; set; }
     private Material topo;
@@ -16,6 +16,7 @@ public class Plataforma
     public Plataforma(Vector3 pos)
     {
         posicao = pos;
+        filho = null;
     }
     Plataforma(Vector3 pos, GameObject c)
     {
@@ -23,6 +24,7 @@ public class Plataforma
         corpo = c;
         topo = corpo.GetComponent<MeshRenderer>().materials[2];
         setEstado(0);
+        filho = null;
     }
 
     public GameObject getCorpo() {

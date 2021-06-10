@@ -11,14 +11,14 @@ public class Tabuleiro
         tamanho = t;
         tabuleiro = new Dictionary<Vector3, Plataforma>();
         Plataforma raiz = new Plataforma(new Vector3(0, 0, 0));
-        tabuleiro = setTabuleiro(raiz, tabuleiro, tamanho);
+        setTabuleiro(raiz, tabuleiro, tamanho);
     }
 
-    public Dictionary<Vector3, Plataforma> setTabuleiro(
+    public void setTabuleiro(
         Plataforma p, Dictionary<Vector3, Plataforma> tabuleiroHash, int t
     ) {
         if (t == 0)
-            return tabuleiroHash;
+            return;
         
         if (!tabuleiroHash.ContainsKey(p.posicao)) {
             tabuleiroHash[p.posicao] = p;
@@ -67,7 +67,7 @@ public class Tabuleiro
         }
         setTabuleiro(tabuleiroHash[posSD], tabuleiroHash, t-1);
 
-        return tabuleiroHash;
+        return;
     }
 
 }

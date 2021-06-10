@@ -33,57 +33,39 @@ public class Tabuleiro
 
         if (!tabuleiroHash.ContainsKey(posNE)) {
             Plataforma nova = new Plataforma(posNE);
-            p.NE = nova;
             tabuleiroHash[posNE] = nova;
         }
-        else
-            p.NE = tabuleiroHash[posNE];
-        setTabuleiro(p.NE, tabuleiroHash, t-1);
+        setTabuleiro(tabuleiroHash[posNE], tabuleiroHash, t-1);
 
         if (!tabuleiroHash.ContainsKey(posD)) {
             Plataforma nova = new Plataforma(posD);
-            p.D = nova;
             tabuleiroHash[posD] = nova;
         }
-        else
-            p.D = tabuleiroHash[posD];
-        setTabuleiro(p.D, tabuleiroHash, t-1);
+        setTabuleiro(tabuleiroHash[posD], tabuleiroHash, t-1);
 
         if (!tabuleiroHash.ContainsKey(posSE)) {
             Plataforma nova = new Plataforma(posSE);
-            p.SE = nova;
             tabuleiroHash[posSE] = nova;
         }
-        else
-            p.SE = tabuleiroHash[posSE];
-        setTabuleiro(p.SE, tabuleiroHash, t-1);
+        setTabuleiro(tabuleiroHash[posSE], tabuleiroHash, t-1);
 
         if (!tabuleiroHash.ContainsKey(posND)) {
             Plataforma nova = new Plataforma(posND);
-            p.ND = nova;
             tabuleiroHash[posND] = nova;
         }
-        else
-            p.ND = tabuleiroHash[posND];
-        setTabuleiro(p.ND, tabuleiroHash, t-1);
+        setTabuleiro(tabuleiroHash[posND], tabuleiroHash, t-1);
 
         if (!tabuleiroHash.ContainsKey(posE)) {
             Plataforma nova = new Plataforma(posE);
-            p.E = nova;
             tabuleiroHash[posE] = nova;
         }
-        else
-            p.ND = tabuleiroHash[posE];
-        setTabuleiro(p.ND, tabuleiroHash, t-1);
+        setTabuleiro(tabuleiroHash[posE], tabuleiroHash, t-1);
 
         if (!tabuleiroHash.ContainsKey(posSD)) {
             Plataforma nova = new Plataforma(posSD);
-            p.SD = nova;
             tabuleiroHash[posSD] = nova;
         }
-        else
-            p.SD = tabuleiroHash[posSD];
-        setTabuleiro(p.SD, tabuleiroHash, t-1);
+        setTabuleiro(tabuleiroHash[posSD], tabuleiroHash, t-1);
 
         return tabuleiroHash;
     }

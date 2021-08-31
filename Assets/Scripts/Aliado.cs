@@ -10,8 +10,8 @@ public class Aliado : Jogador
     private bool isSelecionado { get; set; }
 
     Aliado(
-        Vector3 pos, Material spr, int alc
-    ) : base(pos, spr)
+        string n, Vector3 pos, Sprite spr, int alc
+    ) : base(n, pos, spr)
     {
         alcance = alc;
         isSelecionado = false;

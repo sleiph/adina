@@ -3,16 +3,30 @@
 public class Jogador
 {
     // variaveis do objeto
+    public string nome;
     public Vector3 posicao;
-    public Material sprite;
+    public Sprite sprite;
     private GameObject corpo;
     private Plataforma pai;
     
     // construtor
-    public Jogador(Vector3 pos, Material spr)
+    public Jogador(string n, Vector3 pos, Sprite spr)
     {
+        nome = n;
         posicao = pos;
         sprite = spr;
+    }
+
+    public override string ToString()
+    {
+        return nome;
+    }
+
+    public string getNome() {
+        return nome;
+    }
+    public void setNome(string n) {
+        nome = n;
     }
 
     // getters n setters
@@ -41,15 +55,13 @@ public class Jogador
     public void setPai(Plataforma p)
     {
         pai = p;
-        corpo.transform.parent = pai.getCorpo().transform;
     }
 
-    public Material getMaterial() {
+    public Sprite getSprite() {
         return sprite;
     }
-    public void setMaterial() {
-        Material[] tempMats = { sprite };
+    public void setSprite() {
         corpo.transform.GetChild(0)
-            .GetComponent<Renderer>().materials = tempMats;
+            .GetComponent<SpriteRenderer>().sprite = sprite;
     }
 }

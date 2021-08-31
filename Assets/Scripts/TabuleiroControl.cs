@@ -16,8 +16,10 @@ public class TabuleiroControl : MonoBehaviour
     public int tamanhoTabuleiro;
     Tabuleiro myTabuleiro;
 
-    private bool isAliadoTurno = true,
-                 isPecaSelecionada = false;
+    Aliado selecionado = null;
+    Plataforma[] possiveis = null;
+
+    private bool isAliadoTurno = true;
 
     // funcoes
     void tabuleiroSpawn() {
@@ -38,81 +40,50 @@ public class TabuleiroControl : MonoBehaviour
             GameObject myAliado = Instantiate(
                 jogadoresPrefab,
                 a.getPos(),
-                Quaternion.identity
+                new Quaternion(0,0,0,0),
+                myTabuleiro.tabuleiro[a.getPos()].getCorpo().transform
             );
             
             a.setCorpo(myAliado);
             a.setPai(myTabuleiro.tabuleiro[a.getPos()]);
-            a.setMaterial();
+            a.setSprite();
         }
     }
 
-    /*
-    List<Peca> GetVizinhos(int x, int z, int alcance) {
-        
-        List<Peca> vizinhos = new List<Peca>();
+    Aliado selecionarAliado () {
+        //criao um raio da camera pra onde o mouse foi clicado
+        RaycastHit hitInfo = new RaycastHit();
+        bool hit = Physics.Raycast(
+            Camera.main.ScreenPointToRay(Input.mousePosition),
+            out hitInfo
+        );
 
-        for (int i=x-alcance; i<=x+alcance; i++) {
-            if (i>=0 && i<tamanhoTabuleiro[0]) {
-                if (z%2 == 0) {
-                    if (i==x-alcance) {
-                        vizinhos.Add(tabuleiro[i, z]);
-                    }
-                    else {
-                        for (int j=z-alcance; j<=z+alcance; j++) {
-                            if (j>=0 && j<tamanhoTabuleiro[1]) {
-                                if (i == x && j == z)
-                                    continue;
-                                else
-                                    vizinhos.Add(tabuleiro[i, j]);
-                            }
-                        }
-                    }
-                }
-                else {
-                    if (i==x+alcance) {
-                        vizinhos.Add(tabuleiro[i, z]);
-                    }
-                    else {
-                        for (int j=z-alcance; j<=z+alcance; j++) {
-                            if (j>=0 && j<tamanhoTabuleiro[1]) {
-                                if (i == x && j == z)
-                                    continue;
-                                else
-                                    vizinhos.Add(tabuleiro[i, j]);
-                            }
-                        }
-                    }
+        //seleciona o pai do sprite clicado
+        GameObject temp = null;
+        Aliado tempa = null;
+        if (hit) {
+            if (hitInfo.transform.gameObject.tag == "Player") {
+                temp = hitInfo.transform.parent.gameObject;                       
+            }
+        }
+
+        //loopa pelos aliados até achar o corpo clicado
+        if (temp != null) {
+            foreach (Aliado a in aliados) {
+                if (temp == a.getCorpo()) {
+                    tempa = a;
+                    break;
                 }
             }
         }
-        return vizinhos;
-        
-    }*/
+            
+        return tempa;
+    }
 
-    public void setJogada(Vector3 posicao) {
-        /*
-        int alcance = 1;
-        int x = (int)Math.Ceiling(posicao.x),
-            z = (int)posicao.z;
+    public Plataforma[] plataformasPossiveis(Aliado a) {
+        Plataforma[] temp = { a.getPai() };
 
-        foreach (Aliado a in amigos) {
-            Vector3 temPos = a.getPos();
-            if (temPos == posicao) {
-                a.Selecionar();
-                alcance = a.alcance;
-            }
-            else
-                a.Deselecionar();
-        }
-
-        foreach (Peca p in vizinhos) {
-            p.Inicial();
-        }
-        vizinhos = GetVizinhos(x, z, alcance);
-        foreach (Peca p in vizinhos) {
-            p.Disponivel();
-        }*/
+        return temp;
     }
 
     void Start()
@@ -123,22 +94,32 @@ public class TabuleiroControl : MonoBehaviour
 
     void Update()
     {
-        /*
+        //turno do jogador
         if (isAliadoTurno) {
-            RaycastHit hitInfo = new RaycastHit();
-            bool hit = Physics.Raycast(
-                Camera.main.ScreenPointToRay(Input.mousePosition),
-                out hitInfo
-            );
-
             if (Input.GetMouseButtonDown(0)) {
-                if (hit) {
-                    if (hitInfo.transform.gameObject.tag == "Player") {
-                        setJogada( hitInfo.transform.parent.position );                        
+                // se ja tiver uma peca selecionada
+                if (possiveis != null) {
+                    //limpa as possibilidades
+                    foreach(Plataforma p in possiveis)
+                    {
+                        p.setEstado(0);
+                    }
+                }
+                selecionado = selecionarAliado();
+                // se o jogador clicou em uma peça
+                if (selecionado != null) {
+                    possiveis = plataformasPossiveis(selecionado);
+                    //colore as possibilidades
+                    foreach(Plataforma p in possiveis)
+                    {
+                        p.setEstado(2);
                     }
                 }
             }
         }
-        */
+        //turno do adversário
+        else {
+
+        }
     }
 }

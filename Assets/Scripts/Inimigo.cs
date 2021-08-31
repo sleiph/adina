@@ -8,8 +8,8 @@ public class Inimigo : Jogador
     private static int importancia { get; set; }
 
     Inimigo(
-        Vector3 pos, Material spr, int alc
-    ) : base(pos, spr)
+        string n, Vector3 pos, Sprite spr, int alc
+    ) : base(n, pos, spr)
     {
         
     }

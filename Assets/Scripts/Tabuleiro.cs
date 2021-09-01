@@ -7,9 +7,12 @@ public class Tabuleiro
 
     public Dictionary<Vector3, Plataforma> tabuleiro;
 
+    public HashSet<Plataforma> selecao;
+
     public Tabuleiro(int t) {
         tamanho = t;
         tabuleiro = new Dictionary<Vector3, Plataforma>();
+        selecao = null;
         Plataforma raiz = new Plataforma(new Vector3(0, 0, 0));
         setTabuleiro(raiz, tabuleiro, tamanho);
     }
@@ -68,6 +71,47 @@ public class Tabuleiro
         setTabuleiro(tabuleiroHash[posSD], tabuleiroHash, t-1);
 
         return;
+    }
+
+    public void setTabuleiro(
+        HashSet<Plataforma> set, Plataforma raiz, int n
+    ) {
+        if (n == 0)
+            return;
+
+        Vector3 posNE = new Vector3(raiz.posicao.x, raiz.posicao.y+1, raiz.posicao.z-1);
+        Vector3 posD = new Vector3(raiz.posicao.x+1, raiz.posicao.y-1, raiz.posicao.z);
+        Vector3 posSE = new Vector3(raiz.posicao.x-1, raiz.posicao.y, raiz.posicao.z+1);
+        Vector3 posND = new Vector3(raiz.posicao.x+1, raiz.posicao.y, raiz.posicao.z-1);
+        Vector3 posE = new Vector3(raiz.posicao.x-1, raiz.posicao.y+1, raiz.posicao.z);
+        Vector3 posSD = new Vector3(raiz.posicao.x, raiz.posicao.y-1, raiz.posicao.z+1);
+
+        if (tabuleiro.ContainsKey(posNE)) {
+            set.Add(tabuleiro[posNE]);
+            setTabuleiro(set, tabuleiro[posNE], n-1);
+        }
+        if (tabuleiro.ContainsKey(posD)) {
+            set.Add(tabuleiro[posD]);
+            setTabuleiro(set, tabuleiro[posD], n-1);
+        }
+        if (tabuleiro.ContainsKey(posSE)) {
+            set.Add(tabuleiro[posSE]);
+            setTabuleiro(set, tabuleiro[posSE], n-1);
+        }
+        if (tabuleiro.ContainsKey(posND)) {
+            set.Add(tabuleiro[posND]);
+            setTabuleiro(set, tabuleiro[posND], n-1);
+        }
+        if (tabuleiro.ContainsKey(posE)) {
+            set.Add(tabuleiro[posE]);
+            setTabuleiro(set, tabuleiro[posE], n-1);
+        }
+        if (tabuleiro.ContainsKey(posSD)) {
+            set.Add(tabuleiro[posSD]);
+            setTabuleiro(set, tabuleiro[posSD], n-1);
+        }
+
+        return ;
     }
 
 }

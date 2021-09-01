@@ -191,7 +191,7 @@ MonoBehaviour:
     sprite: {fileID: 0}
   plataformaPrefab: {fileID: 7418996575939669494, guid: 6437ce8c1add4bc4b8360fc518d28ad3,
     type: 3}
-  tamanhoTabuleiro: 4
+  tamanhoTabuleiro: 5
 --- !u!1 &482504823
 GameObject:
   m_ObjectHideFlags: 0

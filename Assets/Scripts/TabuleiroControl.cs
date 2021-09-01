@@ -17,7 +17,6 @@ public class TabuleiroControl : MonoBehaviour
     Tabuleiro myTabuleiro;
 
     Aliado selecionado = null;
-    Plataforma[] possiveis = null;
 
     private bool isAliadoTurno = true;
 
@@ -80,8 +79,11 @@ public class TabuleiroControl : MonoBehaviour
         return tempa;
     }
 
-    public Plataforma[] plataformasPossiveis(Aliado a) {
-        Plataforma[] temp = { a.getPai() };
+    public HashSet<Plataforma> plataformasPossiveis(Aliado a) {
+        HashSet<Plataforma> temp = new HashSet<Plataforma>();
+        temp.Add(a.getPai());
+
+        myTabuleiro.setTabuleiro(temp, a.getPai(), a.alcance);
 
         return temp;
     }
@@ -98,9 +100,9 @@ public class TabuleiroControl : MonoBehaviour
         if (isAliadoTurno) {
             if (Input.GetMouseButtonDown(0)) {
                 // se ja tiver uma peca selecionada
-                if (possiveis != null) {
+                if (myTabuleiro.selecao != null) {
                     //limpa as possibilidades
-                    foreach(Plataforma p in possiveis)
+                    foreach(Plataforma p in myTabuleiro.selecao)
                     {
                         p.setEstado(0);
                     }
@@ -108,9 +110,9 @@ public class TabuleiroControl : MonoBehaviour
                 selecionado = selecionarAliado();
                 // se o jogador clicou em uma peça
                 if (selecionado != null) {
-                    possiveis = plataformasPossiveis(selecionado);
+                    myTabuleiro.selecao = plataformasPossiveis(selecionado);
                     //colore as possibilidades
-                    foreach(Plataforma p in possiveis)
+                    foreach(Plataforma p in myTabuleiro.selecao)
                     {
                         p.setEstado(2);
                     }

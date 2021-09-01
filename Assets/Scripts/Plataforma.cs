@@ -27,6 +27,11 @@ public class Plataforma
         filho = null;
     }
 
+    public override string ToString()
+    {
+        return posicao.ToString();
+    }
+
     public GameObject getCorpo() {
         return corpo;
     }

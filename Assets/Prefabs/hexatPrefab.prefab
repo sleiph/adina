@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5248653606621787348}
   - component: {fileID: 8732061168175557350}
   - component: {fileID: 5299207750364559790}
+  - component: {fileID: 1821542490872340269}
   m_Layer: 9
   m_Name: hexatPrefab
   m_TagString: plataforma
@@ -103,3 +104,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!64 &1821542490872340269
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7418996575939669494}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300004, guid: bc37bb8310cd3cd4eb4552cbfc6587b6, type: 3}

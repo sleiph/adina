@@ -114,4 +114,22 @@ public class Tabuleiro
         return ;
     }
 
+    public void colorePlataformas() {
+        //plataformas[0].topo.SetColor("_Color", new Color(45f/255f, 166f/255f, 81f/255f) );
+        foreach (Plataforma p in selecao) {
+            switch (p.getEstado()) {
+                case 0:     /// 0 disponivel
+                    p.topo.SetColor("_Color", new Color(250f/255f, 195f/255f, 0f/255f) );
+                    break;
+                case 1:     /// 1 ocupado
+                    p.topo.SetColor("_Color", new Color(126f/255f, 25f/255f, 30f/255f) );
+                    break;
+            }
+        }
+    }
+    public void descolorePlataformas() {
+        foreach (Plataforma p in selecao) {
+            p.topo.SetColor("_Color", new Color(60f/255f, 240f/255f, 75f/255f) );
+        }
+    }
 }

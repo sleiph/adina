@@ -46,10 +46,11 @@ public class TabuleiroControl : MonoBehaviour
             a.setCorpo(myAliado);
             a.setPai(myTabuleiro.tabuleiro[a.getPos()]);
             a.setSprite();
+
         }
     }
 
-    Aliado selecionarAliado () {
+    void selecionarPeca () {
         //criao um raio da camera pra onde o mouse foi clicado
         RaycastHit hitInfo = new RaycastHit();
         bool hit = Physics.Raycast(
@@ -58,25 +59,36 @@ public class TabuleiroControl : MonoBehaviour
         );
 
         //seleciona o pai do sprite clicado
-        GameObject temp = null;
-        Aliado tempa = null;
         if (hit) {
-            if (hitInfo.transform.gameObject.tag == "Player") {
-                temp = hitInfo.transform.parent.gameObject;                       
-            }
-        }
+            if (myTabuleiro.selecao != null)
+                myTabuleiro.descolorePlataformas();
 
-        //loopa pelos aliados até achar o corpo clicado
-        if (temp != null) {
-            foreach (Aliado a in aliados) {
-                if (temp == a.getCorpo()) {
-                    tempa = a;
-                    break;
+            if ( hitInfo.transform.gameObject.tag == "Player" ) {
+                //loopa pelos aliados até achar o corpo clicado
+                foreach (Aliado a in aliados) {
+                    if (hitInfo.transform.parent.gameObject == a.getCorpo()) {
+                        selecionado = a;
+                        break;
+                    }
+                }
+
+                // se o jogador clicou em uma peça
+                if (selecionado != null) {
+                    myTabuleiro.selecao = plataformasPossiveis(selecionado);
+                    //colore as possibilidades
+                    myTabuleiro.colorePlataformas();
                 }
             }
+            else if (hitInfo.transform.gameObject.tag == "plataforma") {
+                if (selecionado != null) {
+                    Plataforma temp = myTabuleiro.tabuleiro[hitInfo.transform.position];
+                    if (temp.getEstado()==0)
+                        selecionado.setPai( temp );
+                }
+            }
+            else
+                selecionado = null;
         }
-            
-        return tempa;
     }
 
     public HashSet<Plataforma> plataformasPossiveis(Aliado a) {
@@ -99,24 +111,7 @@ public class TabuleiroControl : MonoBehaviour
         //turno do jogador
         if (isAliadoTurno) {
             if (Input.GetMouseButtonDown(0)) {
-                // se ja tiver uma peca selecionada
-                if (myTabuleiro.selecao != null) {
-                    //limpa as possibilidades
-                    foreach(Plataforma p in myTabuleiro.selecao)
-                    {
-                        p.setEstado(0);
-                    }
-                }
-                selecionado = selecionarAliado();
-                // se o jogador clicou em uma peça
-                if (selecionado != null) {
-                    myTabuleiro.selecao = plataformasPossiveis(selecionado);
-                    //colore as possibilidades
-                    foreach(Plataforma p in myTabuleiro.selecao)
-                    {
-                        p.setEstado(2);
-                    }
-                }
+                selecionarPeca();
             }
         }
         //turno do adversário

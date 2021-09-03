@@ -54,7 +54,15 @@ public class Jogador
     }
     public void setPai(Plataforma p)
     {
+        if (pai != null) {
+            pai.filho = null;
+            pai.setEstado(0);
+        }
         pai = p;
+        corpo.transform.SetParent(pai.getCorpo().transform);
+        corpo.transform.localPosition = new Vector3(0, 0, 0);
+        pai.filho = this;
+        pai.setEstado(1);
     }
 
     public Sprite getSprite() {

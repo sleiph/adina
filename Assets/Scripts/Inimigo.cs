@@ -19,4 +19,10 @@ public class Inimigo : Jogador
         importancia = 0;
     }
 
+    public override void setCorpo(GameObject o)
+    {
+        this.corpo = o;
+        corpo.transform.GetChild(0).GetComponent<SpriteRenderer>().flipX = true;
+    }
+
 }

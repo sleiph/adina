@@ -172,23 +172,27 @@ MonoBehaviour:
   aliados:
   - nome: Adina
     posicao: {x: -1, y: -1, z: 2}
-    sprite: {fileID: 21300000, guid: 181be4af478102a488185425d9239370, type: 3}
+    sprite: {fileID: 21300000, guid: c727434511a4c654297c1c9c59d36d8f, type: 3}
     alcance: 2
   - nome: Carla
     posicao: {x: 2, y: 0, z: -2}
-    sprite: {fileID: 21300000, guid: 7342679088c82ec44adba269f8157b45, type: 3}
+    sprite: {fileID: 21300000, guid: c727434511a4c654297c1c9c59d36d8f, type: 3}
     alcance: 1
   - nome: Carlete
     posicao: {x: -3, y: 3, z: 0}
-    sprite: {fileID: 21300000, guid: 655a7a77181cbfe42a8ea7457a5ff2ff, type: 3}
+    sprite: {fileID: 21300000, guid: c727434511a4c654297c1c9c59d36d8f, type: 3}
+    alcance: 1
+  - nome: Pedro
+    posicao: {x: 0, y: -1, z: 1}
+    sprite: {fileID: 21300000, guid: c727434511a4c654297c1c9c59d36d8f, type: 3}
     alcance: 1
   inimigos:
   - nome: Adeno
     posicao: {x: 0, y: 4, z: -4}
-    sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+    sprite: {fileID: 21300000, guid: ced6f644c2be1e4488ba1daba0d00690, type: 3}
   - nome: 
-    posicao: {x: 0, y: 0, z: 0}
-    sprite: {fileID: 0}
+    posicao: {x: 3, y: -3, z: 0}
+    sprite: {fileID: 21300000, guid: ced6f644c2be1e4488ba1daba0d00690, type: 3}
   plataformaPrefab: {fileID: 7418996575939669494, guid: 6437ce8c1add4bc4b8360fc518d28ad3,
     type: 3}
   tamanhoTabuleiro: 5

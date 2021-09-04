@@ -6,7 +6,7 @@ public class Jogador
     public string nome;
     public Vector3 posicao;
     public Sprite sprite;
-    private GameObject corpo;
+    public GameObject corpo { get; set; }
     private Plataforma pai;
     
     // construtor
@@ -39,11 +39,7 @@ public class Jogador
         posicao = pos;
     }
 
-    public GameObject getCorpo()
-    {
-        return corpo;
-    }
-    public void setCorpo(GameObject o)
+    public virtual void setCorpo(GameObject o)
     {
         corpo = o;
     }

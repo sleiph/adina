@@ -50,6 +50,22 @@ public class TabuleiroControl : MonoBehaviour
         }
     }
 
+    void inimigoSpawn() {
+        foreach (Inimigo i in inimigos) {
+            GameObject myInimigo = Instantiate(
+                jogadoresPrefab,
+                i.getPos(),
+                new Quaternion(0,0,0,0),
+                myTabuleiro.tabuleiro[i.getPos()].getCorpo().transform
+            );
+            
+            i.setCorpo(myInimigo);
+            i.setPai(myTabuleiro.tabuleiro[i.getPos()]);
+            i.setSprite();
+
+        }
+    }
+
     void selecionarPeca () {
         //criao um raio da camera pra onde o mouse foi clicado
         RaycastHit hitInfo = new RaycastHit();
@@ -66,7 +82,7 @@ public class TabuleiroControl : MonoBehaviour
             if ( hitInfo.transform.gameObject.tag == "Player" ) {
                 //loopa pelos aliados até achar o corpo clicado
                 foreach (Aliado a in aliados) {
-                    if (hitInfo.transform.parent.gameObject == a.getCorpo()) {
+                    if (hitInfo.transform.parent.gameObject == a.corpo) {
                         selecionado = a;
                         break;
                     }
@@ -82,9 +98,17 @@ public class TabuleiroControl : MonoBehaviour
             else if (hitInfo.transform.gameObject.tag == "plataforma") {
                 if (selecionado != null) {
                     Plataforma temp = myTabuleiro.tabuleiro[hitInfo.transform.position];
-                    if (temp.getEstado()==0)
-                        selecionado.setPai( temp );
+                    
+                    if (temp.getEstado()==0) {
+                        foreach (Plataforma p in myTabuleiro.selecao) {
+                            if (temp == p) {
+                                selecionado.setPai( temp );
+                                break;
+                            }
+                        }
+                    }
                 }
+                selecionado = null;
             }
             else
                 selecionado = null;
@@ -104,6 +128,7 @@ public class TabuleiroControl : MonoBehaviour
     {
         tabuleiroSpawn();
         aliadoSpawn();
+        inimigoSpawn();
     }
 
     void Update()

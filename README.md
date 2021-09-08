@@ -1,15 +1,13 @@
 # Adina
 
-Criando um jogo no Unity pra combater o tédio da quarentena, não tenho muitas esperanças, nem um plano definido.
+Criando um jogo no Unity pra combater o tédio da quarentena, não tenho muitas esperanças, nem um plano definido. Por enquanto eu só estou tentando reproduzir a jogabilidade de um TRPG
 
-feito em C#, usando Unity, Blender, Illustrator e Visual Studio Code
-
-Por enquanto eu só estou tentando reproduzir a jogabilidade de um TRPG
+Feito em C#, usando Unity, Blender, Photoshop e Illustrator.
 
 ## Como usar
-O controle do jogo tá sendo feito pelo componente tabuleiro.
+A cena usada é a 01, o controle do jogo é feito pelo objeto tabuleiro.
+
+![adina](/Assets/Sprites/adina.png)
 
 ## Fazer
-- Performance
-    - Separar as tarefas dos scripts por objeto. eg.: o tabuleiro armazena as variaveis e funções de spawn de peças.
-    - Tirar os foreachs desnecessários
+- Tudo

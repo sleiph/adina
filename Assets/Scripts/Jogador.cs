@@ -4,17 +4,17 @@ public class Jogador
 {
     // variaveis do objeto
     public string nome;
-    public Vector3 posicao;
     public Sprite sprite;
-    public GameObject corpo { get; set; }
-    private Plataforma pai;
+    public Transform corpo { get; set; }
+    public Plataforma pai { get; set; }
     
     // construtor
-    public Jogador(string n, Vector3 pos, Sprite spr)
+    public Jogador(string nome, Sprite sprite, Transform corpo, Plataforma pai)
     {
-        nome = n;
-        posicao = pos;
-        sprite = spr;
+        this.nome = nome;
+        setSprite(sprite);
+        this.corpo = corpo;
+        setPai(pai);
     }
 
     public override string ToString()
@@ -29,43 +29,21 @@ public class Jogador
         nome = n;
     }
 
-    // getters n setters
-    public Vector3 getPos()
-    {
-        return posicao;
-    }
-    public void setPos(Vector3 pos)
-    {
-        posicao = pos;
-    }
-
-    public virtual void setCorpo(GameObject o)
-    {
-        corpo = o;
-    }
-
-    public Plataforma getPai()
-    {
-        return pai;
-    }
-    public void setPai(Plataforma p)
-    {
-        if (pai != null) {
-            pai.filho = null;
-            pai.setEstado(0);
-        }
-        pai = p;
-        corpo.transform.SetParent(pai.getCorpo().transform);
-        corpo.transform.localPosition = new Vector3(0, 0, 0);
-        pai.filho = this;
-        pai.setEstado(1);
-    }
-
     public Sprite getSprite() {
         return sprite;
     }
-    public void setSprite() {
-        corpo.transform.GetChild(0)
-            .GetComponent<SpriteRenderer>().sprite = sprite;
+    public void setSprite(Sprite sprite) {
+        this.sprite = sprite;
+        //corpo.transform.GetChild(0).GetComponent<SpriteRenderer>().sprite = sprite;
     }
+
+    public void setPai(Plataforma pai)
+    {
+        this.pai.setFilho(null);
+        this.pai = pai;
+        this.pai.setFilho(corpo);
+        corpo.transform.SetParent( pai.corpo );
+        corpo.transform.localPosition = new Vector3(0, 0, 0);
+    }
+
 }

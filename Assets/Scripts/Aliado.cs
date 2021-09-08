@@ -1,18 +1,38 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
 public class Aliado : Jogador
 {
     // variaveis do objeto
-    public int alcance;
-    private int importancia { get; set; }
+    public Vector3[] movimentos;
 
-    Aliado(
-        string n, Vector3 pos, Sprite spr, int alc
-    ) : base(n, pos, spr)
+    public Aliado(
+        string nome, Sprite sprite, Transform corpo, Plataforma pai,
+        Vector3[] movimentos
+    ) : base(nome, sprite, corpo, pai)
     {
-        alcance = alc;
+        this.movimentos = movimentos;
     }
- 
+
+    public Vector3[] getMovimentos() {
+        return movimentos;
+    }
+    public void setMovimentos(Vector3[] movimentos) {
+        this.movimentos = movimentos;
+    }
+
+    public List<Plataforma> setPossiveis(Dictionary<Vector3, Plataforma> tabuleiro) {
+        List<Plataforma> temp = new List<Plataforma>();
+
+        foreach (Vector3 m in movimentos) {
+            if (tabuleiro.ContainsKey(pai.posicao - m))
+                temp.Add(tabuleiro[pai.posicao - m]);
+        }
+
+        return temp;
+    }
+
 }

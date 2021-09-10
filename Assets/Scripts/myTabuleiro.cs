@@ -123,6 +123,8 @@ public class myTabuleiro : MonoBehaviour
                         if (selecionado != null && selecionadoInimigo == null) {
                             selecionarPlataforma(hitInfo.transform);
                         }
+                        else
+                            selecionadoInimigo = null;
                     }
                     else {
                         selecionado = null;

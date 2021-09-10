@@ -5252,36 +5252,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1605253536}
     m_Modifications:
-    - target: {fileID: 728697570570732444, guid: 4af8506451052d246bb083191d1551a8,
-        type: 3}
-      propertyPath: aliado.movimentos.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 728697570570732444, guid: 4af8506451052d246bb083191d1551a8,
-        type: 3}
-      propertyPath: aliado.movimentos.Array.data[1].x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 728697570570732444, guid: 4af8506451052d246bb083191d1551a8,
-        type: 3}
-      propertyPath: aliado.movimentos.Array.data[1].y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 728697570570732444, guid: 4af8506451052d246bb083191d1551a8,
-        type: 3}
-      propertyPath: aliado.movimentos.Array.data[1].z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 728697570570732444, guid: 4af8506451052d246bb083191d1551a8,
-        type: 3}
-      propertyPath: aliado.movimentos.Array.data[2].x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 728697570570732444, guid: 4af8506451052d246bb083191d1551a8,
-        type: 3}
-      propertyPath: aliado.movimentos.Array.data[2].z
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 5332338660190684257, guid: 4af8506451052d246bb083191d1551a8,
         type: 3}
       propertyPath: m_Name
@@ -5320,7 +5290,7 @@ PrefabInstance:
     - target: {fileID: 5332338660190684271, guid: 4af8506451052d246bb083191d1551a8,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5332338660190684271, guid: 4af8506451052d246bb083191d1551a8,
         type: 3}
@@ -5500,36 +5470,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5066256619255600188, guid: c0f4f8f546374e945a710e293a53a171,
-        type: 3}
-      propertyPath: inimigo.movimentos.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 5066256619255600188, guid: c0f4f8f546374e945a710e293a53a171,
-        type: 3}
-      propertyPath: inimigo.movimentos.Array.data[0].x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5066256619255600188, guid: c0f4f8f546374e945a710e293a53a171,
-        type: 3}
-      propertyPath: inimigo.movimentos.Array.data[0].y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5066256619255600188, guid: c0f4f8f546374e945a710e293a53a171,
-        type: 3}
-      propertyPath: inimigo.movimentos.Array.data[0].z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5066256619255600188, guid: c0f4f8f546374e945a710e293a53a171,
-        type: 3}
-      propertyPath: inimigo.movimentos.Array.data[1].x
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5066256619255600188, guid: c0f4f8f546374e945a710e293a53a171,
-        type: 3}
-      propertyPath: inimigo.movimentos.Array.data[1].y
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c0f4f8f546374e945a710e293a53a171, type: 3}

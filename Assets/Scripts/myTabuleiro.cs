@@ -131,6 +131,9 @@ public class myTabuleiro : MonoBehaviour
                     }
                 }
             }
+            else if (Input.GetKeyDown(KeyCode.Tab)) {
+                Debug.Log("colé man");
+            }
         }
         //turno do adversário
         else {
